@@ -1,0 +1,13 @@
+# FrigeoAI Robots.txt
+User-agent: *
+Allow: /
+Allow: /generate
+Allow: /privacy
+Allow: /terms
+Allow: /contact
+
+# Disallow API routes from crawling
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://fridgeo.app/sitemap.xml
