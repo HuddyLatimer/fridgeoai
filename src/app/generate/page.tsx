@@ -102,6 +102,16 @@ export default function GenerateRecipe() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Ensure video stream plays when camera opens
+  useEffect(() => {
+    if (stream && videoRef.current && showCamera) {
+      videoRef.current.srcObject = stream;
+      videoRef.current.play().catch(err => {
+        console.error("Error playing video:", err);
+      });
+    }
+  }, [stream, showCamera]);
+
   const dietaryOptions = [
     { id: "vegetarian", label: "Vegetarian", icon: Leaf },
     { id: "vegan", label: "Vegan", icon: Apple },
@@ -253,10 +263,13 @@ export default function GenerateRecipe() {
     if (!context) return;
 
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    const imageData = canvas.toDataURL("image/jpeg", 0.8);
+    const imageData = canvas.toDataURL("image/jpeg", 0.9);
 
-    setImagePreview(imageData);
+    // Stop camera and auto-analyze immediately
     stopCamera();
+    setImagePreview(imageData);
+
+    // Auto-analyze the image (like uploading a photo)
     detectIngredientsFromImage(imageData);
   }, [stopCamera]);
 

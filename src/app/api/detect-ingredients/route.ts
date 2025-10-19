@@ -69,20 +69,42 @@ DETECTION STRATEGY - COMPREHENSIVE ANALYSIS:
 
 4. CATEGORY-SPECIFIC DETECTION:
 
-   PRODUCE:
-   - Look for: Natural colors, organic textures, characteristic shapes
-   - Confirm with: Skin texture (citrus dimples, apple smoothness, leafy veins)
-   - Common items: Apples, oranges, bananas, lettuce, tomatoes, carrots, onions, peppers
+   PRODUCE (VISUAL RECOGNITION WITHOUT LABELS):
+   - Fruits by appearance:
+     * ROUND + RED/GREEN glossy = apples
+     * OBLONG + YELLOW = bananas (look for stem/curve)
+     * ROUND + ORANGE dimpled skin = oranges
+     * SMALL + RED smooth = tomatoes (vs cherry tomatoes)
+     * ROUND + PURPLE/RED = grapes (in clusters)
+     * OVAL + GREEN/BROWN fuzzy = kiwi
+   - Vegetables by appearance:
+     * LEAFY + GREEN layers = lettuce/cabbage
+     * LONG + ORANGE tapered = carrots
+     * ROUND + YELLOW/RED papery skin = onions
+     * BELL-SHAPED + various colors = bell peppers
+     * LONG + GREEN ridged = cucumbers/zucchini
+     * ROUND + WHITE = mushrooms (cap + stem)
+     * FLORETS + GREEN/WHITE = broccoli/cauliflower
+   - Texture clues: Leafy veins, citrus dimples, smooth vs fuzzy skin
+   - Common items: Apples, oranges, bananas, lettuce, tomatoes, carrots, onions, peppers, cucumber, broccoli
 
    DAIRY:
    - Look for: Carton shapes, white/cream colors, brand logos
    - Confirm with: Container shapes (milk jugs, yogurt cups, cheese blocks)
    - Common items: Milk, yogurt, cheese, butter, cream
 
-   PROTEINS/MEATS:
-   - Look for: Styrofoam trays, plastic wrap, butcher paper, red/pink colors
-   - Confirm with: Meat texture, packaging labels (beef, chicken, pork)
-   - Common items: Chicken breast, ground beef, bacon, deli meat, fish
+   PROTEINS/MEATS (ENHANCED VISUAL DETECTION):
+   - Look for: Styrofoam trays, plastic wrap, butcher paper, vacuum-sealed packages
+   - Visual cues WITHOUT labels:
+     * RED/DARK RED marbling = beef (steaks, ground beef, roasts)
+     * PALE PINK smooth texture = chicken (breasts, thighs, whole pieces)
+     * LIGHT PINK with white fat strips = pork (chops, tenderloin, bacon)
+     * ORANGE/PINK flesh = salmon or fish fillets
+     * WHITE/TRANSLUCENT with veining = raw shrimp
+     * DARK BROWN/BLACK = cooked/smoked meats
+   - Packaging clues: Butcher labels with numbers/weights, shrink wrap, bone shapes
+   - Texture recognition: Muscle fibers, marbling patterns, fat distribution
+   - Common items: Chicken breast, ground beef, pork chops, bacon, salmon, turkey, ham, sausage
 
    CONDIMENTS/SAUCES:
    - Look for: Bottle/jar shapes, distinctive caps, label colors
