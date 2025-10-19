@@ -84,6 +84,7 @@ export default function GenerateRecipe() {
   const [facingMode, setFacingMode] = useState<"user" | "environment">("environment");
   const [isMobile, setIsMobile] = useState(false);
   const [originalDetectedIngredients, setOriginalDetectedIngredients] = useState<Ingredient[]>([]);
+  const [isDragging, setIsDragging] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -137,6 +138,48 @@ export default function GenerateRecipe() {
       return;
     }
 
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result as string;
+      setImagePreview(base64String);
+      detectIngredientsFromImage(base64String);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  };
+
+  const handleDrop = async (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+
+    const file = e.dataTransfer.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    if (!file.type.startsWith("image/")) {
+      setError("Please drop a valid image file");
+      return;
+    }
+
+    // Validate file size (max 10MB)
+    if (file.size > 10 * 1024 * 1024) {
+      setError("Image size must be less than 10MB");
+      return;
+    }
+
+    setUploadMethod("photo");
     const reader = new FileReader();
     reader.onloadend = () => {
       const base64String = reader.result as string;
@@ -503,22 +546,30 @@ export default function GenerateRecipe() {
                     </button>
                   )}
 
-                  <button
+                  <div
                     onClick={() => {
                       setUploadMethod("photo");
                       fileInputRef.current?.click();
                     }}
-                    disabled={detectingIngredients}
-                    className="p-8 rounded-2xl border-2 border-gray-200 hover:border-primary transition-all hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                    className={`p-8 rounded-2xl border-2 transition-all cursor-pointer ${
+                      isDragging
+                        ? 'border-primary bg-primary/10 shadow-xl scale-105'
+                        : 'border-gray-200 hover:border-primary hover:shadow-lg'
+                    } ${detectingIngredients ? 'opacity-50 cursor-not-allowed' : ''}`}
                   >
-                    <Upload className="w-12 h-12 text-primary mx-auto mb-4" />
+                    <Upload className={`w-12 h-12 mx-auto mb-4 transition-colors ${
+                      isDragging ? 'text-primary animate-bounce' : 'text-primary'
+                    }`} />
                     <h3 className="text-xl font-bold mb-2 text-black">
                       Upload Photo
                     </h3>
                     <p className="text-gray-600">
-                      Choose an image from your device
+                      {isDragging ? 'Drop image here!' : 'Click or drag & drop an image'}
                     </p>
-                  </button>
+                  </div>
 
                   <button
                     onClick={() => {
